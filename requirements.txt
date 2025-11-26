@@ -1,0 +1,4 @@
+pyyaml
+# Dependencies for DevilMCP adapter (mirroring what we saw in DevilMCP repo if possible, or generic)
+sqlalchemy
+python-dotenv

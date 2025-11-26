@@ -1,0 +1,55 @@
+defaults:
+  mode: "yolo" 
+  output_format: "text"
+
+agents:
+  gemini:
+    name: "Gemini - The Eyes"
+    cmd: "gemini"
+    static_flags: ["--all-files"] 
+    description: "Unlimited context analysis."
+
+  cursor:
+    name: "Cursor - The Hands #1 (Logic)"
+    cmd: "cursor-agent" 
+    static_flags: ["--model", "sonnet-4.5", "--force"]
+    description: "Complex reasoning and backend logic."
+
+  codex:
+    name: "Codex - The Hands #2 (Visual)"
+    cmd: "codex"
+    static_flags: ["--model", "gpt-5", "--dangerously-bypass-approvals-and-sandbox", "exec"]
+    description: "Frontend, UI, and visual implementation."
+    
+  copilot:
+    name: "Copilot - The Hands #3 (Ops)"
+    cmd: "copilot"
+    static_flags: ["--allow-all-tools", "-p"]
+    description: "Terminal, Git, and boilerplate."
+
+  devilmcp:
+    name: "DevilMCP - Context & Memory"
+    # Point to the python executable and our adapter
+    cmd: "python devilmcp_adapter.py" 
+    static_flags: []
+    description: "Project context analysis and decision tracking."
+
+templates:
+  analyze: |
+    CONTEXT: {context}
+    TASK: {task}
+    Provide: Analysis/Recommendations
+
+  code: |
+    IMPLEMENTATION TASK
+    OBJECTIVE: {task}
+    FILES: {files}
+    REQ: {reqs}
+
+  review: |
+    CODE REVIEW
+    FILES: {files}
+    FOCUS: {focus}
+
+  # Mapped to the adapter's arguments
+  mcp_task: "{task}" 
